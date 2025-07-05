@@ -62,9 +62,9 @@ namespace ScrabbleEngine
             }
         }
 
-        private Boolean WordInLetters(string strWord, string strLetters, int intMinLength = 0, bool blnIsMask = false, string strMask = "-------")
+        private Boolean WordInLetters(string strWord, string strLetters, int intMinLength = 0, int intMaxLength = 7, bool blnIsMask = false, string strMask = "-------")
         {
-            if (strWord.Length < intMinLength)
+            if ((strWord.Length < intMinLength) || (strWord.Length > intMaxLength))
                 return false;
 
             strWord = strWord.ToLower().Trim();
@@ -118,14 +118,9 @@ namespace ScrabbleEngine
                 MessageBox.Show("Must have seven letters!", "Not 7 letters", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            else if (strMask.Length != 7)
-            {
-                MessageBox.Show("Must have seven letters in mask!", "Not 7 letters", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
 
             int intMinLength = 0;
+            int intMaxLength = strMask.Length;
             bool blnIsMask = false;
             CreateMask(ref intMinLength, ref blnIsMask, strMask);
                         
@@ -147,7 +142,7 @@ namespace ScrabbleEngine
                 while ((word = reader.ReadLine()) != null)
                 {
                     strTempLetters = strLetters;
-                    if (WordInLetters(word, strTempLetters, intMinLength, blnIsMask, strMask) == true)
+                    if (WordInLetters(word, strTempLetters, intMinLength, intMaxLength, blnIsMask, strMask) == true)
                     {
                         //Console.WriteLine(word);
                         DisplayListBox.Items.Add(word);
