@@ -1,0 +1,10 @@
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\bin\Debug\ScrabbleEngine.exe.config
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\bin\Debug\ScrabbleEngine.exe
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\bin\Debug\ScrabbleEngine.pdb
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\obj\Debug\ScrabbleEngine.csproj.AssemblyReference.cache
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\obj\Debug\ScrabbleEngine.MainForm.resources
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\obj\Debug\ScrabbleEngine.Properties.Resources.resources
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\obj\Debug\ScrabbleEngine.csproj.GenerateResource.cache
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\obj\Debug\ScrabbleEngine.csproj.CoreCompileInputs.cache
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\obj\Debug\ScrabbleEngine.exe
+C:\Users\slocu\Documents\GitHub\ScrabbleEngine\obj\Debug\ScrabbleEngine.pdb
