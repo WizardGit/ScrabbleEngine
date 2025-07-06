@@ -24,7 +24,13 @@ namespace ScrabbleEngine
         public MainForm()
         {
             InitializeComponent();
+            SortComboBox.SelectedIndex = 0;
         }
+
+        private List<Word> lstWords = new List<Word>();
+        private bool blnSortAscending = true;
+
+
 
         private void Sort(ref string strLetters)
         {
@@ -145,6 +151,7 @@ namespace ScrabbleEngine
                     if (WordInLetters(word, strTempLetters, intMinLength, intMaxLength, blnIsMask, strMask) == true)
                     {
                         //Console.WriteLine(word);
+                        lstWords.Add(new Word(word));
                         DisplayListBox.Items.Add(word);
                     }
 
@@ -153,9 +160,67 @@ namespace ScrabbleEngine
                     //Console.WriteLine(word); // You can replace this with any logic you want                    
                 }
             }
+            DisplayListBox.Items.Clear();
+
+            foreach (Word word in lstWords)
+            {
+                DisplayListBox.Items.Add(word.PrintWordPoints());
+            }
+
 
             Console.WriteLine("Done reading all words." + intProgressValue);
             ProgressBar.Value = 0;
+        }
+
+        private void SortLengthBtn_Click(object sender, EventArgs e)
+        {
+            DisplayListBox.Items.Clear();
+
+            lstWords.Sort((a, b) =>
+            {
+                return blnSortAscending
+                    ? a.Length.CompareTo(b.Length)      // Ascending
+                    : b.Length.CompareTo(a.Length);     // Descending
+            });
+
+            //lstWords.Sort((a, b) => b.Points.CompareTo(a.Points));
+            foreach (Word word in lstWords)
+            {
+                DisplayListBox.Items.Add(word.PrintWordPoints());
+            }
+        }
+
+        private void SortPointsBtn_Click(object sender, EventArgs e)
+        {
+            DisplayListBox.Items.Clear();
+
+            lstWords.Sort((a, b) =>
+            {
+                return blnSortAscending
+                    ? a.Points.CompareTo(b.Points)      // Ascending
+                    : b.Points.CompareTo(a.Points);     // Descending
+            });
+
+            foreach (Word word in lstWords)
+            {
+                DisplayListBox.Items.Add(word.PrintWordPoints());
+            }
+        }
+
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SortComboBox.SelectedIndex == 0)
+            {
+                blnSortAscending = true;
+            }
+            else if (SortComboBox.SelectedIndex == 1)
+            {
+                blnSortAscending = false;
+            }
+            else
+            {
+                throw new Exception("Not Valid selection");
+            }
         }
     }
 }

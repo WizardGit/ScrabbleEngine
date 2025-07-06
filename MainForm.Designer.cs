@@ -35,6 +35,9 @@
             this.ProcessLabel = new System.Windows.Forms.Label();
             this.InstructionLabel = new System.Windows.Forms.Label();
             this.MaskTextBox = new System.Windows.Forms.TextBox();
+            this.SortLengthBtn = new System.Windows.Forms.Button();
+            this.SortPointsBtn = new System.Windows.Forms.Button();
+            this.SortComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // LettersTextbox
@@ -96,11 +99,46 @@
             this.MaskTextBox.TabIndex = 6;
             this.MaskTextBox.Text = "-------";
             // 
+            // SortLengthBtn
+            // 
+            this.SortLengthBtn.Location = new System.Drawing.Point(216, 233);
+            this.SortLengthBtn.Name = "SortLengthBtn";
+            this.SortLengthBtn.Size = new System.Drawing.Size(108, 23);
+            this.SortLengthBtn.TabIndex = 7;
+            this.SortLengthBtn.Text = "Sort by Length";
+            this.SortLengthBtn.UseVisualStyleBackColor = true;
+            this.SortLengthBtn.Click += new System.EventHandler(this.SortLengthBtn_Click);
+            // 
+            // SortPointsBtn
+            // 
+            this.SortPointsBtn.Location = new System.Drawing.Point(216, 262);
+            this.SortPointsBtn.Name = "SortPointsBtn";
+            this.SortPointsBtn.Size = new System.Drawing.Size(108, 23);
+            this.SortPointsBtn.TabIndex = 8;
+            this.SortPointsBtn.Text = "Sort by Points";
+            this.SortPointsBtn.UseVisualStyleBackColor = true;
+            this.SortPointsBtn.Click += new System.EventHandler(this.SortPointsBtn_Click);
+            // 
+            // SortComboBox
+            // 
+            this.SortComboBox.FormattingEnabled = true;
+            this.SortComboBox.Items.AddRange(new object[] {
+            "Ascending",
+            "Descending"});
+            this.SortComboBox.Location = new System.Drawing.Point(330, 235);
+            this.SortComboBox.Name = "SortComboBox";
+            this.SortComboBox.Size = new System.Drawing.Size(121, 21);
+            this.SortComboBox.TabIndex = 9;
+            this.SortComboBox.SelectedIndexChanged += new System.EventHandler(this.SortComboBox_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 359);
+            this.Controls.Add(this.SortComboBox);
+            this.Controls.Add(this.SortPointsBtn);
+            this.Controls.Add(this.SortLengthBtn);
             this.Controls.Add(this.MaskTextBox);
             this.Controls.Add(this.InstructionLabel);
             this.Controls.Add(this.ProcessLabel);
@@ -124,6 +162,9 @@
         private System.Windows.Forms.Label ProcessLabel;
         private System.Windows.Forms.Label InstructionLabel;
         private System.Windows.Forms.TextBox MaskTextBox;
+        private System.Windows.Forms.Button SortLengthBtn;
+        private System.Windows.Forms.Button SortPointsBtn;
+        private System.Windows.Forms.ComboBox SortComboBox;
     }
 }
 
