@@ -13,8 +13,11 @@ using System.Windows.Forms;
 
 /*
  * TODO:
- * Have a way to sort my length / points scored
- * You'll need to create some way to store points per letter
+ * Let's say we have a lot of spaces. If the word is too far before the required letter, the top letter has to make a word and thus is a required letter
+ * but if it's only a few above, than that doesn't matter. So we need to allow the mask to be longer than 7 mask letters and have the program
+ * try different possibility and where the word is placed.
+ * BASICALLY, have enough mask for an entire row/column - fill it out with required letters, and let program decide where it wants it to go.
+ * maybe 'x' for blocked spot? (e.g. no letter will work there)
  */
 
 namespace ScrabbleEngine
@@ -221,6 +224,35 @@ namespace ScrabbleEngine
             {
                 throw new Exception("Not Valid selection");
             }
+        }
+
+        private void CheckWordBtn_Click(object sender, EventArgs e)
+        {
+            //All the words in the scrabble text list are uppercase, so let's just do that and match
+            string strCheckWord = CheckWordTextBox.Text.ToUpper().Trim();
+
+            string filePath = "ScrabbleWords.txt";
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Word list file not found.");
+                return;
+            }
+
+            // Read words line by line
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string word;
+                while ((word = reader.ReadLine()) != null)
+                {
+                    if (word == strCheckWord)
+                    {
+                        MessageBox.Show(strCheckWord + " is a Scrabble word!", "Word Check", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }                   
+                }
+            }
+            MessageBox.Show(strCheckWord + " is NOT a Scrabble word!", "Word Check", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

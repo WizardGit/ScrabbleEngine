@@ -38,6 +38,8 @@
             this.SortLengthBtn = new System.Windows.Forms.Button();
             this.SortPointsBtn = new System.Windows.Forms.Button();
             this.SortComboBox = new System.Windows.Forms.ComboBox();
+            this.CheckWordBtn = new System.Windows.Forms.Button();
+            this.CheckWordTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // LettersTextbox
@@ -93,9 +95,9 @@
             // 
             // MaskTextBox
             // 
-            this.MaskTextBox.Location = new System.Drawing.Point(131, 22);
+            this.MaskTextBox.Location = new System.Drawing.Point(108, 23);
             this.MaskTextBox.Name = "MaskTextBox";
-            this.MaskTextBox.Size = new System.Drawing.Size(79, 20);
+            this.MaskTextBox.Size = new System.Drawing.Size(50, 20);
             this.MaskTextBox.TabIndex = 6;
             this.MaskTextBox.Text = "-------";
             // 
@@ -131,11 +133,30 @@
             this.SortComboBox.TabIndex = 9;
             this.SortComboBox.SelectedIndexChanged += new System.EventHandler(this.SortComboBox_SelectedIndexChanged);
             // 
+            // CheckWordBtn
+            // 
+            this.CheckWordBtn.Location = new System.Drawing.Point(216, 291);
+            this.CheckWordBtn.Name = "CheckWordBtn";
+            this.CheckWordBtn.Size = new System.Drawing.Size(75, 23);
+            this.CheckWordBtn.TabIndex = 11;
+            this.CheckWordBtn.Text = "Check Word";
+            this.CheckWordBtn.UseVisualStyleBackColor = true;
+            this.CheckWordBtn.Click += new System.EventHandler(this.CheckWordBtn_Click);
+            // 
+            // CheckWordTextBox
+            // 
+            this.CheckWordTextBox.Location = new System.Drawing.Point(297, 293);
+            this.CheckWordTextBox.Name = "CheckWordTextBox";
+            this.CheckWordTextBox.Size = new System.Drawing.Size(79, 20);
+            this.CheckWordTextBox.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 359);
+            this.Controls.Add(this.CheckWordTextBox);
+            this.Controls.Add(this.CheckWordBtn);
             this.Controls.Add(this.SortComboBox);
             this.Controls.Add(this.SortPointsBtn);
             this.Controls.Add(this.SortLengthBtn);
@@ -165,6 +186,8 @@
         private System.Windows.Forms.Button SortLengthBtn;
         private System.Windows.Forms.Button SortPointsBtn;
         private System.Windows.Forms.ComboBox SortComboBox;
+        private System.Windows.Forms.Button CheckWordBtn;
+        private System.Windows.Forms.TextBox CheckWordTextBox;
     }
 }
 
