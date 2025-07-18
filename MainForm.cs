@@ -30,10 +30,63 @@ namespace ScrabbleEngine
             SortComboBox.SelectedIndex = 0;
         }
 
-        private List<Word> lstWords = new List<Word>();
         private bool blnSortAscending = true;
+        private List<Word> lstWords;
 
+        private void LineCheck()
+        {
 
+        }
+
+        private void CreateAllWords(string pstrMask, string pstrLetters, out List<Word> pLstStrWords)
+        {
+            string filePath = "ScrabbleWords.txt";
+            pLstStrWords = new List<Word>();
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Word list file not found.");
+                return;
+            }
+
+            if (pstrLetters.Length != 7)
+            {
+                MessageBox.Show("Must have seven letters!", "Not 7 letters", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int intMinLength = 0;
+            int intMaxLength = pstrMask.Length;
+            bool blnIsMask = false;
+            CreateMask(ref intMinLength, ref blnIsMask, pstrMask);
+
+            pstrLetters = pstrLetters.ToLower().Trim();
+            Sort(ref pstrLetters);
+
+            string strTempLetters;
+            //ProgressBar.Value = 0;
+            //ProgressBar.Maximum = 276645;
+            //int intProgressValue = 0;
+
+            // Read words line by line
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string word;
+                while ((word = reader.ReadLine()) != null)
+                {
+                    strTempLetters = pstrLetters;
+                    if (WordInLetters(word, strTempLetters, intMinLength, intMaxLength, blnIsMask, pstrMask) == true)
+                    {
+                        //Console.WriteLine(word);
+                        pLstStrWords.Add(new Word(word));
+                    }
+
+                    //intProgressValue++;
+                    //ProgressBar.Value = intProgressValue;
+                    //Console.WriteLine(word); // You can replace this with any logic you want                    
+                }
+            }
+        }
 
         private void Sort(ref string strLetters)
         {
@@ -112,67 +165,21 @@ namespace ScrabbleEngine
 
         private void ProcessBtn_Click(object sender, EventArgs e)
         {
-            string filePath = "ScrabbleWords.txt";
-
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("Word list file not found.");
-                return;
-            } 
-
             string strLetters = LettersTextbox.Text;
             string strMask = MaskTextBox.Text;
-            if ( strLetters.Length != 7)
-            {        
-                MessageBox.Show("Must have seven letters!", "Not 7 letters", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            int intMinLength = 0;
-            int intMaxLength = strMask.Length;
-            bool blnIsMask = false;
-            CreateMask(ref intMinLength, ref blnIsMask, strMask);
-                        
-
-            strLetters = strLetters.ToLower().Trim();
-            Sort(ref strLetters);
-
-            string strTempLetters;
-            ProgressBar.Value = 0;
-            ProgressBar.Maximum = 276645;
-            int intProgressValue = 0;
+            CreateAllWords(strMask, strLetters, out List<Word> pLstStrWords);
+            lstWords = pLstStrWords;
 
             DisplayListBox.Items.Clear();
 
-            // Read words line by line
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string word;
-                while ((word = reader.ReadLine()) != null)
-                {
-                    strTempLetters = strLetters;
-                    if (WordInLetters(word, strTempLetters, intMinLength, intMaxLength, blnIsMask, strMask) == true)
-                    {
-                        //Console.WriteLine(word);
-                        lstWords.Add(new Word(word));
-                        DisplayListBox.Items.Add(word);
-                    }
-
-                    intProgressValue++;
-                    ProgressBar.Value = intProgressValue;
-                    //Console.WriteLine(word); // You can replace this with any logic you want                    
-                }
-            }
-            DisplayListBox.Items.Clear();
-
-            foreach (Word word in lstWords)
+            foreach (Word word in pLstStrWords)
             {
                 DisplayListBox.Items.Add(word.PrintWordPoints());
             }
 
 
-            Console.WriteLine("Done reading all words." + intProgressValue);
-            ProgressBar.Value = 0;
+            Console.WriteLine("Done reading all words.");
+            //ProgressBar.Value = 0;
         }
 
         private void SortLengthBtn_Click(object sender, EventArgs e)
