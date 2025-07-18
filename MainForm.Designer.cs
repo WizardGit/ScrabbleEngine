@@ -40,6 +40,8 @@
             this.SortComboBox = new System.Windows.Forms.ComboBox();
             this.CheckWordBtn = new System.Windows.Forms.Button();
             this.CheckWordTextBox = new System.Windows.Forms.TextBox();
+            this.LineCheckMaskTextBox = new System.Windows.Forms.TextBox();
+            this.LineCheckBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LettersTextbox
@@ -150,11 +152,31 @@
             this.CheckWordTextBox.Size = new System.Drawing.Size(79, 20);
             this.CheckWordTextBox.TabIndex = 12;
             // 
+            // LineCheckMaskTextBox
+            // 
+            this.LineCheckMaskTextBox.Location = new System.Drawing.Point(560, 61);
+            this.LineCheckMaskTextBox.Name = "LineCheckMaskTextBox";
+            this.LineCheckMaskTextBox.Size = new System.Drawing.Size(76, 20);
+            this.LineCheckMaskTextBox.TabIndex = 14;
+            this.LineCheckMaskTextBox.Text = "---------------";
+            // 
+            // LineCheckBtn
+            // 
+            this.LineCheckBtn.Location = new System.Drawing.Point(680, 58);
+            this.LineCheckBtn.Name = "LineCheckBtn";
+            this.LineCheckBtn.Size = new System.Drawing.Size(108, 39);
+            this.LineCheckBtn.TabIndex = 13;
+            this.LineCheckBtn.Text = "Check Line";
+            this.LineCheckBtn.UseVisualStyleBackColor = true;
+            this.LineCheckBtn.Click += new System.EventHandler(this.LineCheckBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 359);
+            this.ClientSize = new System.Drawing.Size(1019, 412);
+            this.Controls.Add(this.LineCheckMaskTextBox);
+            this.Controls.Add(this.LineCheckBtn);
             this.Controls.Add(this.CheckWordTextBox);
             this.Controls.Add(this.CheckWordBtn);
             this.Controls.Add(this.SortComboBox);
@@ -188,6 +210,8 @@
         private System.Windows.Forms.ComboBox SortComboBox;
         private System.Windows.Forms.Button CheckWordBtn;
         private System.Windows.Forms.TextBox CheckWordTextBox;
+        private System.Windows.Forms.TextBox LineCheckMaskTextBox;
+        private System.Windows.Forms.Button LineCheckBtn;
     }
 }
 

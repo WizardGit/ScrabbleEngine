@@ -33,9 +33,55 @@ namespace ScrabbleEngine
         private bool blnSortAscending = true;
         private List<Word> lstWords;
 
-        private void LineCheck()
+        private void AddWord(Word pwrdWord, ref List<Word> pLstStrWords)
         {
+            foreach (Word word in pLstStrWords)
+            {
+                if (pwrdWord.Value == word.Value)
+                {
+                    return;
+                }
+            }
+            pLstStrWords.Add(pwrdWord);
+        }
 
+        private void LineCheck(string pstrMask, string pstrLetters, out List<Word> pLstStrWords)
+        {
+            ProgressBar.Value = 0;
+            ProgressBar.Maximum = 276645 * pstrMask.Length;
+            int intProgressValue = 0;
+
+            pLstStrWords = new List<Word>();
+            List<Word> lstValWords;
+            CreateAllWords("", pstrLetters, out lstValWords);
+
+            string filePath = "ScrabbleWords.txt";
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Word list file not found.");
+                return;
+            }
+
+            for (int i = 0; i < pstrMask.Length; i++)
+            {
+                //Try each dictionary word
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string word;
+                    while ((word = reader.ReadLine()) != null)
+                    {
+                        Word scrabbleWord = new Word(word);
+                        if (scrabbleWord.WordMatchMask(i, pstrMask.Length, pstrMask, pstrLetters, true) == true)
+                        {
+                            pLstStrWords.Add(scrabbleWord);
+                        }
+
+                        intProgressValue++;
+                        ProgressBar.Value = intProgressValue;
+                        //Console.WriteLine(word); // You can replace this with any logic you want                    
+                    }
+                }
+            }
         }
 
         private void CreateAllWords(string pstrMask, string pstrLetters, out List<Word> pLstStrWords)
@@ -260,6 +306,21 @@ namespace ScrabbleEngine
                 }
             }
             MessageBox.Show(strCheckWord + " is NOT a Scrabble word!", "Word Check", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void LineCheckBtn_Click(object sender, EventArgs e)
+        {
+            string strLetters = LettersTextbox.Text;
+            string strMask = LineCheckMaskTextBox.Text;
+
+            LineCheck(strMask, strLetters, out List<Word> pLstStrWords);
+
+            DisplayListBox.Items.Clear();
+
+            foreach (Word word in pLstStrWords)
+            {
+                DisplayListBox.Items.Add(word.PrintWordPoints());
+            }
         }
     }
 }

@@ -59,6 +59,90 @@ namespace ScrabbleEngine
         public string PrintWordPoints()
         {
             return this.value + " (" + this.points + ")";
-        }        
+        }
+
+        public char this[int index]
+        {
+            get { return this.letterList[index].Value; }
+            set { this.letterList[index].Value = value; }
+        }
+
+        public bool WordMatchMask(int pintStartIndex, int pintEndIndex, string pstrMask)
+        {
+            if (pstrMask.Length < this.Length)
+                return false;
+
+            Word wrdMask = new Word(pstrMask);            
+
+            for (int i = pintStartIndex; (i < pintEndIndex) && (i < this.Length); i++)
+            {
+                if (wrdMask[i] != '-')
+                {
+                    if (wrdMask.letterList[i].Value != this.letterList[i].Value)
+                    {
+                        return false;
+                    }
+                }                
+            }
+            return true;
+        }
+
+        public bool RemoveLetter(char pcharLetter, ref string pstrLetters)
+        {
+            char[] charListLetters = pstrLetters.ToCharArray();
+
+            for (int i = 0; i < pstrLetters.Length; i++)
+            {
+                if (charListLetters[i] == pcharLetter)
+                {
+                    charListLetters[i] = '-';
+                    pstrLetters = charListLetters.ToString();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool WordMatchMask(int pintStartIndex, int pintEndIndex, string pstrMask, string pstrLetters, bool pblnMustHitMask)
+        {
+            bool blnHitMask;
+            if (pblnMustHitMask == true)
+            {
+                blnHitMask = false;
+            }
+            else
+            {
+                blnHitMask = true;
+            }
+
+
+            if (pstrMask.Length < this.Length)
+                return false;
+
+            Word wrdMask = new Word(pstrMask);
+
+            for (int i = pintStartIndex; (i < pintEndIndex) && (i < this.Length); i++)
+            {
+                if (wrdMask[i] != '-')
+                {
+                    if (wrdMask.letterList[i].Value != this.letterList[i].Value)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        blnHitMask = true;
+                    }
+                }
+                else
+                {
+                    if (RemoveLetter(this.letterList[i].Value, ref pstrLetters) == false)
+                    {
+                        return false;
+                    }
+                }                
+            }
+            return blnHitMask;
+        }
     }
 }
