@@ -66,25 +66,16 @@ namespace ScrabbleEngine
             get { return this.letterList[index].Value; }
             set { this.letterList[index].Value = value; }
         }
-
-        public bool WordMatchMask(int pintStartIndex, int pintEndIndex, string pstrMask)
+        public void AddToList(ref List<Word> pLstStrWords)
         {
-            if (pstrMask.Length < this.Length)
-                return false;
-
-            Word wrdMask = new Word(pstrMask);            
-
-            for (int i = pintStartIndex; (i < pintEndIndex) && (i < this.Length); i++)
+            foreach (Word word in pLstStrWords)
             {
-                if (wrdMask[i] != '-')
+                if (this.Value == word.Value)
                 {
-                    if (wrdMask.letterList[i].Value != this.letterList[i].Value)
-                    {
-                        return false;
-                    }
-                }                
+                    return;
+                }
             }
-            return true;
+            pLstStrWords.Add(this);
         }
 
         public bool RemoveLetter(char pcharLetter, ref string pstrLetters)
@@ -95,54 +86,55 @@ namespace ScrabbleEngine
             {
                 if (charListLetters[i] == pcharLetter)
                 {
-                    charListLetters[i] = '-';
-                    pstrLetters = charListLetters.ToString();
+                    charListLetters[i] = MainForm.charNoLetter;
+                    pstrLetters = new string(charListLetters);
                     return true;
                 }
             }
             return false;
         }
 
-        public bool WordMatchMask(int pintStartIndex, int pintEndIndex, string pstrMask, string pstrLetters, bool pblnMustHitMask)
+        public bool WordMatchMask(int pintStartIndex, string pstrMask, string pstrLetters, bool pblnMustHitMask)
         {
             bool blnHitMask;
             if (pblnMustHitMask == true)
-            {
                 blnHitMask = false;
-            }
             else
-            {
                 blnHitMask = true;
-            }
 
-
-            if (pstrMask.Length < this.Length)
+            if ((pstrMask.Length < this.Length) || ((pstrMask.Length - pintStartIndex) < this.Length))
                 return false;
 
             Word wrdMask = new Word(pstrMask);
 
-            for (int i = pintStartIndex; (i < pintEndIndex) && (i < this.Length); i++)
+            //We can't count words if there is a letter before it for same reason as letters after word (see below comment)
+            if ((pintStartIndex - 1 >= 0) && (wrdMask[pintStartIndex - 1] != MainForm.charNoLetter) )
             {
-                if (wrdMask[i] != '-')
+                return false;
+            }
+
+            int c = pintStartIndex;
+            for (int i = pintStartIndex, j = 0; (i < pstrMask.Length) && (j < this.Length); i++, j++, c++)
+            {
+                if (wrdMask[i] == MainForm.charNoLetter)
                 {
-                    if (wrdMask.letterList[i].Value != this.letterList[i].Value)
-                    {
+                    if (RemoveLetter(this[j], ref pstrLetters) == false)
                         return false;
-                    }
-                    else
-                    {
-                        blnHitMask = true;
-                    }
                 }
                 else
                 {
-                    if (RemoveLetter(this.letterList[i].Value, ref pstrLetters) == false)
-                    {
+                    if (wrdMask[i] != this[j])
                         return false;
-                    }
-                }                
+                    else
+                        blnHitMask = true;
+                }
             }
-            return blnHitMask;
+            //We need to check to make sure our word doesn't end right next to another letter - otherwise the word can't be played
+            //If that letter can still be combined to make a different word, we'll catch that case letter as we move through the dictionary
+            if ((c != pstrMask.Length) && (wrdMask[c] != MainForm.charNoLetter))
+                return false;
+            else
+                return blnHitMask;
         }
     }
 }

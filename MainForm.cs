@@ -13,11 +13,7 @@ using System.Windows.Forms;
 
 /*
  * TODO:
- * Let's say we have a lot of spaces. If the word is too far before the required letter, the top letter has to make a word and thus is a required letter
- * but if it's only a few above, than that doesn't matter. So we need to allow the mask to be longer than 7 mask letters and have the program
- * try different possibility and where the word is placed.
- * BASICALLY, have enough mask for an entire row/column - fill it out with required letters, and let program decide where it wants it to go.
- * maybe 'x' for blocked spot? (e.g. no letter will work there)
+ * allow mask letters to be multiple different letters
  */
 
 namespace ScrabbleEngine
@@ -32,18 +28,8 @@ namespace ScrabbleEngine
 
         private bool blnSortAscending = true;
         private List<Word> lstWords;
-
-        private void AddWord(Word pwrdWord, ref List<Word> pLstStrWords)
-        {
-            foreach (Word word in pLstStrWords)
-            {
-                if (pwrdWord.Value == word.Value)
-                {
-                    return;
-                }
-            }
-            pLstStrWords.Add(pwrdWord);
-        }
+        public const char charNoLetter = '-';
+        public const char charAnyLetter = '*';
 
         private void LineCheck(string pstrMask, string pstrLetters, out List<Word> pLstStrWords)
         {
@@ -51,49 +37,32 @@ namespace ScrabbleEngine
             ProgressBar.Maximum = 276645 * pstrMask.Length;
             int intProgressValue = 0;
 
-            pLstStrWords = new List<Word>();
-            List<Word> lstValWords;
-            CreateAllWords("", pstrLetters, out lstValWords);
+            ReturnScrabbleDictionary(out List<string> dictWords);
 
-            string filePath = "ScrabbleWords.txt";
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("Word list file not found.");
-                return;
-            }
+            pLstStrWords = new List<Word>();
 
             for (int i = 0; i < pstrMask.Length; i++)
             {
-                //Try each dictionary word
-                using (StreamReader reader = new StreamReader(filePath))
-                {
-                    string word;
-                    while ((word = reader.ReadLine()) != null)
-                    {
-                        Word scrabbleWord = new Word(word);
-                        if (scrabbleWord.WordMatchMask(i, pstrMask.Length, pstrMask, pstrLetters, true) == true)
-                        {
-                            pLstStrWords.Add(scrabbleWord);
-                        }
+                Word debugWord = new Word("Words start at Index " + i.ToString());
+                debugWord.AddToList(ref pLstStrWords);
 
-                        intProgressValue++;
-                        ProgressBar.Value = intProgressValue;
-                        //Console.WriteLine(word); // You can replace this with any logic you want                    
+                foreach (string word in dictWords)
+                {
+                    Word scrabbleWord = new Word(word);
+                    if (scrabbleWord.WordMatchMask(i, pstrMask, pstrLetters, true) == true)
+                    {
+                        scrabbleWord.AddToList(ref pLstStrWords);
                     }
-                }
+
+                    ProgressBar.Value = intProgressValue++;                  
+                }                
             }
         }
 
         private void CreateAllWords(string pstrMask, string pstrLetters, out List<Word> pLstStrWords)
         {
-            string filePath = "ScrabbleWords.txt";
+            ReturnScrabbleDictionary(out List<string> dictWords);
             pLstStrWords = new List<Word>();
-
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("Word list file not found.");
-                return;
-            }
 
             if (pstrLetters.Length != 7)
             {
@@ -110,26 +79,40 @@ namespace ScrabbleEngine
             Sort(ref pstrLetters);
 
             string strTempLetters;
-            //ProgressBar.Value = 0;
-            //ProgressBar.Maximum = 276645;
-            //int intProgressValue = 0;
+            ProgressBar.Value = 0;
+            ProgressBar.Maximum = 276645;
+            int intProgressValue = 0;
 
             // Read words line by line
+            foreach (string word in dictWords)
+            {
+                strTempLetters = pstrLetters;
+                if (WordInLetters(word, strTempLetters, intMinLength, intMaxLength, blnIsMask, pstrMask) == true)
+                {
+                    pLstStrWords.Add(new Word(word));
+                }
+                
+                ProgressBar.Value = intProgressValue++;                  
+            }
+        }
+
+        private void ReturnScrabbleDictionary(out List<string> pLstStrWords)
+        {
+            string filePath = "ScrabbleWords.txt";
+            pLstStrWords = new List<string>();
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Word list file not found.");
+                return;
+            }
+
             using (StreamReader reader = new StreamReader(filePath))
             {
                 string word;
                 while ((word = reader.ReadLine()) != null)
                 {
-                    strTempLetters = pstrLetters;
-                    if (WordInLetters(word, strTempLetters, intMinLength, intMaxLength, blnIsMask, pstrMask) == true)
-                    {
-                        //Console.WriteLine(word);
-                        pLstStrWords.Add(new Word(word));
-                    }
-
-                    //intProgressValue++;
-                    //ProgressBar.Value = intProgressValue;
-                    //Console.WriteLine(word); // You can replace this with any logic you want                    
+                    pLstStrWords.Add(word.ToLower().Trim());                
                 }
             }
         }
@@ -141,7 +124,7 @@ namespace ScrabbleEngine
 
             foreach (char c in strLetters) 
             {
-                if (c == '*')
+                if (c == charAnyLetter)
                     intStarCount++;
                 else if (char.IsLetter(c) == true)
                     cList.Add(c);
@@ -150,7 +133,7 @@ namespace ScrabbleEngine
             }
 
             for (int i = 0; i < intStarCount; i++)
-                cList.Add('*');
+                cList.Add(charAnyLetter);
 
             strLetters = new string(cList.ToArray());
         }
@@ -162,7 +145,7 @@ namespace ScrabbleEngine
                 pIntMinLength = i + 1;
 
                 char c = pStrMask[i];
-                if (c != '-')
+                if (c != charNoLetter)
                 {
                     pBlnIsMask = true;
                     break;
@@ -185,7 +168,7 @@ namespace ScrabbleEngine
 
                 if (blnIsMask == true)
                 {
-                    if ((strMask[intLetter] != '-') && (c != strMask[intLetter]))
+                    if ((strMask[intLetter] != charNoLetter) && (c != strMask[intLetter]))
                     {
                         return false;
                     }
@@ -195,9 +178,9 @@ namespace ScrabbleEngine
                 for (int i = 0; (i < cLetters.Length) && (invalidChar == true); i++)
                 {
 
-                    if ((cLetters[i] == c) || (cLetters[i] == '*'))
+                    if ((cLetters[i] == c) || (cLetters[i] == charAnyLetter))
                     {
-                        cLetters[i] = '-';
+                        cLetters[i] = charNoLetter;
                         invalidChar = false;
                     }
                 }
@@ -222,10 +205,6 @@ namespace ScrabbleEngine
             {
                 DisplayListBox.Items.Add(word.PrintWordPoints());
             }
-
-
-            Console.WriteLine("Done reading all words.");
-            //ProgressBar.Value = 0;
         }
 
         private void SortLengthBtn_Click(object sender, EventArgs e)
@@ -310,10 +289,11 @@ namespace ScrabbleEngine
 
         private void LineCheckBtn_Click(object sender, EventArgs e)
         {
-            string strLetters = LettersTextbox.Text;
+            string strLetters = LettersTextbox.Text.ToLower().Trim();
             string strMask = LineCheckMaskTextBox.Text;
 
             LineCheck(strMask, strLetters, out List<Word> pLstStrWords);
+            lstWords = pLstStrWords;
 
             DisplayListBox.Items.Clear();
 
