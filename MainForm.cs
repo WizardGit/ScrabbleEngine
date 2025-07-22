@@ -24,12 +24,11 @@ namespace ScrabbleEngine
         {
             InitializeComponent();
             SortComboBox.SelectedIndex = 0;
+            CreateBoard();
         }
 
         private bool blnSortAscending = true;
-        private List<Word> lstWords;
-        public const char charNoLetter = '-';
-        public const char charAnyLetter = '*';
+        private List<Word> lstWords;        
 
         private void LineCheck(string pstrMask, string pstrLetters, out List<Word> pLstStrWords)
         {
@@ -124,7 +123,7 @@ namespace ScrabbleEngine
 
             foreach (char c in strLetters) 
             {
-                if (c == charAnyLetter)
+                if (c == Letter.AnyLetter)
                     intStarCount++;
                 else if (char.IsLetter(c) == true)
                     cList.Add(c);
@@ -133,7 +132,7 @@ namespace ScrabbleEngine
             }
 
             for (int i = 0; i < intStarCount; i++)
-                cList.Add(charAnyLetter);
+                cList.Add(Letter.AnyLetter);
 
             strLetters = new string(cList.ToArray());
         }
@@ -145,7 +144,7 @@ namespace ScrabbleEngine
                 pIntMinLength = i + 1;
 
                 char c = pStrMask[i];
-                if (c != charNoLetter)
+                if (c != Letter.NoLetter)
                 {
                     pBlnIsMask = true;
                     break;
@@ -168,7 +167,7 @@ namespace ScrabbleEngine
 
                 if (blnIsMask == true)
                 {
-                    if ((strMask[intLetter] != charNoLetter) && (c != strMask[intLetter]))
+                    if ((strMask[intLetter] != Letter.NoLetter) && (c != strMask[intLetter]))
                     {
                         return false;
                     }
@@ -178,9 +177,9 @@ namespace ScrabbleEngine
                 for (int i = 0; (i < cLetters.Length) && (invalidChar == true); i++)
                 {
 
-                    if ((cLetters[i] == c) || (cLetters[i] == charAnyLetter))
+                    if ((cLetters[i] == c) || (cLetters[i] == Letter.AnyLetter))
                     {
-                        cLetters[i] = charNoLetter;
+                        cLetters[i] = Letter.NoLetter;
                         invalidChar = false;
                     }
                 }
@@ -300,6 +299,27 @@ namespace ScrabbleEngine
             foreach (Word word in pLstStrWords)
             {
                 DisplayListBox.Items.Add(word.PrintWordPoints());
+            }
+        }
+
+        private void CreateBoard()
+        {
+            TextBox[,] board = new TextBox[15, 15];
+
+            for (int row = 0; row < 15; row++)
+            {
+                for (int col = 0; col < 15; col++)
+                {
+                    TextBox tb = new TextBox
+                    {
+                        MaxLength = 1,
+                        TextAlign = HorizontalAlignment.Center,
+                        Dock = DockStyle.Fill
+                    };
+
+                    board[row, col] = tb;
+                    gridTableLayout.Controls.Add(tb, col, row);
+                }
             }
         }
     }

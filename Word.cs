@@ -86,7 +86,7 @@ namespace ScrabbleEngine
             {
                 if (charListLetters[i] == pcharLetter)
                 {
-                    charListLetters[i] = MainForm.charNoLetter;
+                    charListLetters[i] = Letter.NoLetter;
                     pstrLetters = new string(charListLetters);
                     return true;
                 }
@@ -108,7 +108,7 @@ namespace ScrabbleEngine
             Word wrdMask = new Word(pstrMask);
 
             //We can't count words if there is a letter before it for same reason as letters after word (see below comment)
-            if ((pintStartIndex - 1 >= 0) && (wrdMask[pintStartIndex - 1] != MainForm.charNoLetter) )
+            if ((pintStartIndex - 1 >= 0) && (wrdMask[pintStartIndex - 1] != Letter.NoLetter) )
             {
                 return false;
             }
@@ -116,7 +116,7 @@ namespace ScrabbleEngine
             int c = pintStartIndex;
             for (int i = pintStartIndex, j = 0; (i < pstrMask.Length) && (j < this.Length); i++, j++, c++)
             {
-                if (wrdMask[i] == MainForm.charNoLetter)
+                if (wrdMask[i] == Letter.NoLetter)
                 {
                     if (RemoveLetter(this[j], ref pstrLetters) == false)
                         return false;
@@ -131,7 +131,7 @@ namespace ScrabbleEngine
             }
             //We need to check to make sure our word doesn't end right next to another letter - otherwise the word can't be played
             //If that letter can still be combined to make a different word, we'll catch that case letter as we move through the dictionary
-            if ((c != pstrMask.Length) && (wrdMask[c] != MainForm.charNoLetter))
+            if ((c != pstrMask.Length) && (wrdMask[c] != Letter.NoLetter))
                 return false;
             else
                 return blnHitMask;

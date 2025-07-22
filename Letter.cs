@@ -8,6 +8,9 @@ namespace ScrabbleEngine
 {
     internal class Letter
     {
+        public const char NoLetter = '-';
+        public const char AnyLetter = '*';
+
         private char value;
         private int points;
 
