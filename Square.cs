@@ -36,6 +36,7 @@ namespace ScrabbleEngine
         public BonusType Bonus
         {
             get { return this.bonusType; }
+            set { this.bonusType = value; }
         }
         public List<Letter> ValidValues
         {
@@ -49,10 +50,10 @@ namespace ScrabbleEngine
                 bonusType = pBonusType;
             }
 
+            value = pstrValue;
             validValues = new List<Letter>();
             if (pstrValue != Letter.NoLetter)
-            {
-                value = pstrValue;
+            {                
                 validValues.Add(new Letter(pstrValue));
             }
             else

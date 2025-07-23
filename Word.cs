@@ -91,6 +91,16 @@ namespace ScrabbleEngine
                     return true;
                 }
             }
+            //We have no corresponding letters, but check for the wildcard
+            for (int i = 0; i < pstrLetters.Length; i++)
+            {
+                if (charListLetters[i] == Letter.AnyLetter)
+                {
+                    charListLetters[i] = Letter.NoLetter;
+                    pstrLetters = new string(charListLetters);
+                    return true;
+                }
+            }
             return false;
         }
 
@@ -132,6 +142,50 @@ namespace ScrabbleEngine
             //We need to check to make sure our word doesn't end right next to another letter - otherwise the word can't be played
             //If that letter can still be combined to make a different word, we'll catch that case letter as we move through the dictionary
             if ((c != pstrMask.Length) && (wrdMask[c] != Letter.NoLetter))
+                return false;
+            else
+                return blnHitMask;
+        }
+
+        public bool WordMatchMask(int pintStartIndex, Line pLine, string pstrLetters, bool pblnMustHitMask = true, bool pblnMustMatchLength = false)
+        {
+            if ((pblnMustMatchLength == true) && (this.Length != pLine.Length))
+                return false;
+
+            bool blnHitMask;
+            if (pblnMustHitMask == true)
+                blnHitMask = false;
+            else
+                blnHitMask = true;
+
+            if ((pLine.Length < this.Length) || ((pLine.Length - pintStartIndex) < this.Length))
+                return false;            
+
+            //We can't count words if there is a letter before it for same reason as letters after word (see below comment)
+            if ((pintStartIndex - 1 >= 0) && (pLine[pintStartIndex - 1] != Letter.NoLetter))
+            {
+                return false;
+            }
+
+            int c = pintStartIndex;
+            for (int i = pintStartIndex, j = 0; (i < pLine.Length) && (j < this.Length); i++, j++, c++)
+            {
+                if (pLine[i] == Letter.NoLetter)
+                {
+                    if (RemoveLetter(this[j], ref pstrLetters) == false)
+                        return false;
+                }
+                else
+                {
+                    if (pLine[i] != this[j])
+                        return false;
+                    else
+                        blnHitMask = true;
+                }
+            }
+            //We need to check to make sure our word doesn't end right next to another letter - otherwise the word can't be played
+            //If that letter can still be combined to make a different word, we'll catch that case letter as we move through the dictionary
+            if ((c != pLine.Length) && (pLine[c] != Letter.NoLetter))
                 return false;
             else
                 return blnHitMask;
