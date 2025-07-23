@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Principal;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /*
  * TODO:
- * allow mask letters to be multiple different letters
+ * allow text box mask to restrict possible letters
+ * line method to be passed a board and copy squares from a row or column to itself so it can be checked
+ * board method to go square by square and refresh possible letters in that square
+ * color backgrounds of squares of form board for their bonus
  */
 
 namespace ScrabbleEngine
@@ -158,7 +155,8 @@ namespace ScrabbleEngine
                     {
                         MaxLength = 1,
                         TextAlign = HorizontalAlignment.Center,
-                        Dock = DockStyle.Fill
+                        Margin = new Padding(0),
+                        Width = 20 
                     };
 
                     board[row, col] = tb;

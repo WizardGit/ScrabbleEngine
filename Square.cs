@@ -86,14 +86,22 @@ namespace ScrabbleEngine
                 validValues.Add(new Letter('z'));
             }                
         } 
-
-        public bool RemoveLetter(char letter)
+        public bool IsValid(char pLetter)
         {
-            return validValues.Remove(validValues.Find(p => p.Value == letter));
+            foreach (Letter l in this.validValues)
+            {
+                if (l.Value == pLetter)
+                    return true;
+            }
+            return false;
         }
-        public bool RemoveLetter(Letter letter)
+        public bool RemoveLetter(char pLetter)
         {
-            return validValues.Remove(validValues.Find(p => p.Value == letter.Value));
+            return validValues.Remove(validValues.Find(p => p.Value == pLetter));
+        }
+        public bool RemoveLetter(Letter pLetter)
+        {
+            return validValues.Remove(validValues.Find(p => p.Value == pLetter.Value));
         }
     }
 }

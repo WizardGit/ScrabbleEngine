@@ -31,6 +31,10 @@ namespace ScrabbleEngine
             get { return this.validSquares[index].Value; }
             set { this.validSquares[index].Value = value; }
         }
+        public Square GetSquare(int pIndex)
+        {
+            return validSquares[pIndex];
+        }
 
         public void LineCheck(string pstrLetters, out List<Word> pLstStrWords, ProgressBar pB)
         {

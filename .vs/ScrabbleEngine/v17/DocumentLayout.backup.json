@@ -3,36 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|c:\\users\\slocu\\documents\\github\\scrabbleengine\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\word.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:word.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|c:\\users\\slocu\\documents\\github\\scrabbleengine\\line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|c:\\users\\slocu\\documents\\github\\scrabbleengine\\dictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\dictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:dictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\word.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:word.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\letter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:letter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|c:\\users\\slocu\\documents\\github\\scrabbleengine\\square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092C90-9040-4FA8-B8C9-24791BE6F133}|ScrabbleEngine.csproj|solutionrelative:board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +46,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "MainForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\MainForm.cs",
               "RelativeDocumentMoniker": "MainForm.cs",
@@ -64,27 +64,27 @@
               "RelativeDocumentMoniker": "MainForm.cs",
               "ToolTip": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\MainForm.cs",
               "RelativeToolTip": "MainForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAwAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-05T18:11:45.86Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Line.cs",
               "DocumentMoniker": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Line.cs",
               "RelativeDocumentMoniker": "Line.cs",
               "ToolTip": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Line.cs",
               "RelativeToolTip": "Line.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAowDcAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowCEAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-22T22:44:22.492Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Letter.cs",
               "DocumentMoniker": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Letter.cs",
               "RelativeDocumentMoniker": "Letter.cs",
@@ -97,33 +97,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Word.cs",
               "DocumentMoniker": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Word.cs",
               "RelativeDocumentMoniker": "Word.cs",
               "ToolTip": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Word.cs",
               "RelativeToolTip": "Word.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAA5wGUAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAwwKMAAABwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-05T23:40:03.161Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Square.cs",
               "DocumentMoniker": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Square.cs",
               "RelativeDocumentMoniker": "Square.cs",
               "ToolTip": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Square.cs",
               "RelativeToolTip": "Square.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAcwCAAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwFAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-22T00:41:06.032Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Board.cs",
               "DocumentMoniker": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Board.cs",
               "RelativeDocumentMoniker": "Board.cs",
@@ -131,12 +131,11 @@
               "RelativeToolTip": "Board.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T01:06:06.672Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T01:06:06.672Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Dictionary.cs",
               "DocumentMoniker": "C:\\Users\\slocu\\Documents\\GitHub\\ScrabbleEngine\\Dictionary.cs",
               "RelativeDocumentMoniker": "Dictionary.cs",

@@ -172,7 +172,7 @@ namespace ScrabbleEngine
             {
                 if (pLine[i] == Letter.NoLetter)
                 {
-                    if (RemoveLetter(this[j], ref pstrLetters) == false)
+                    if ((pLine.GetSquare(i).IsValid(this[j]) == false) || (RemoveLetter(this[j], ref pstrLetters) == false))
                         return false;
                 }
                 else
