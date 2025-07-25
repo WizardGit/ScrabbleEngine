@@ -10,7 +10,6 @@ namespace ScrabbleEngine
     internal class Dictionary
     {
         private List<string> dictionary;
-        private int length;
 
         public int Length
         {

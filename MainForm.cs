@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -10,22 +11,22 @@ using System.Windows.Forms;
  * allow text box mask to restrict possible letters
  * line method to be passed a board and copy squares from a row or column to itself so it can be checked
  * board method to go square by square and refresh possible letters in that square
- * color backgrounds of squares of form board for their bonus
  */
 
 namespace ScrabbleEngine
 {
     public partial class MainForm : Form
     {
+        private bool blnSortAscending = true;
+        private List<Word> lstWords;
+        private Board dataBoard;
         public MainForm()
         {
             InitializeComponent();
             SortComboBox.SelectedIndex = 0;
             CreateBoard();
-        }
-
-        private bool blnSortAscending = true;
-        private List<Word> lstWords; 
+            dataBoard = new Board();
+        }       
 
         private void ProcessBtn_Click(object sender, EventArgs e)
         {
@@ -145,6 +146,7 @@ namespace ScrabbleEngine
 
         private void CreateBoard()
         {
+            //Set text boxes in my table layout form object
             TextBox[,] board = new TextBox[15, 15];
 
             for (int row = 0; row < 15; row++)
@@ -156,11 +158,29 @@ namespace ScrabbleEngine
                         MaxLength = 1,
                         TextAlign = HorizontalAlignment.Center,
                         Margin = new Padding(0),
-                        Width = 20 
+                        Width = 20,
+                        ForeColor = System.Drawing.Color.LimeGreen,                        
+                        Font = new Font(Font, FontStyle.Bold)
                     };
 
                     board[row, col] = tb;
                     gridTableLayout.Controls.Add(tb, col, row);
+                }
+            }
+
+            //Set the text box colors according to their bonus
+            for (int r = 0; r < dataBoard.GridDimension; r++)
+            {
+                for (int c = 0; c < dataBoard.GridDimension; c++)
+                {
+                    if (dataBoard[r, c].Bonus == Square.BonusType.doubleLetter)
+                        board[r, c].BackColor = Color.LightBlue;
+                    else if (dataBoard[r, c].Bonus == Square.BonusType.tripleLetter)
+                        board[r, c].BackColor = Color.DarkBlue;
+                    else if (dataBoard[r, c].Bonus == Square.BonusType.doubleWord)
+                        board[r, c].BackColor = Color.Pink;
+                    else if (dataBoard[r, c].Bonus == Square.BonusType.tripleWord)
+                        board[r, c].BackColor = Color.Red;
                 }
             }
         }

@@ -43,7 +43,7 @@ namespace ScrabbleEngine
             get { return this.validValues; }
         }
 
-        public Square(BonusType pBonusType, char pstrValue = Letter.NoLetter) 
+        public Square(BonusType pBonusType = BonusType.nothing, char pstrValue = Letter.NoLetter) 
         {
             if (pBonusType != BonusType.nothing)
             {

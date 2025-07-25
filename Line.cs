@@ -36,6 +36,11 @@ namespace ScrabbleEngine
             return validSquares[pIndex];
         }
 
+        public void AddSquare(Square pSquare)
+        {
+            validSquares.Add(pSquare);
+        }
+
         public void LineCheck(string pstrLetters, out List<Word> pLstStrWords, ProgressBar pB)
         {
             int intProgressValue = 0;
